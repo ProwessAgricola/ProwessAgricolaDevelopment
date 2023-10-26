@@ -1,9 +1,18 @@
 import express from "express";
 import cors from "cors";
+import dotenv from 'dotenv';
+import fs from 'fs';
 const app = express();
 app.use(express.json())
 app.use(cors());
-const port = 5000;
+if (fs.existsSync('.env.local')) {
+  dotenv.config({ path: '.env.local' });
+} else {
+
+  console.log('.env.local not found. Using .env.');
+  dotenv.config(); // Cargar las variables de .env
+}
+const port = process.env.PORT || 5000;
 
 import multer from 'multer';
 const almacenamiento = multer.memoryStorage();
@@ -55,11 +64,6 @@ app.put('/fb/order/delivered/:id', order.delivered);
 
 // Ruta para manejar la obtención de todos los pedidos relacionados con un usuario específico usando el método HTTP GET
 app.get('/fb/order/getOrders/:id', order.getOrders);
-
-// Iniciar el servidor y hacer que escuche en el puerto definido
-app.listen(port,() =>{
-  console.log("Servidor en operación (Puerto 5000).")
-})
 
 // CategoryController
 
@@ -142,3 +146,7 @@ app.get('/fb/auth',tokencontroller.getUserDataFromToken);
 
 import * as ubicacion from './Src/controller/locationController.js';
 
+// Iniciar el servidor y hacer que escuche en el puerto definido
+app.listen(port,() =>{
+  console.log(`Servidor en operación (Puerto ${port}).`)
+})
