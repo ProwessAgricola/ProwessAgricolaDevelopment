@@ -5,6 +5,7 @@ import fs from 'fs';
 const app = express();
 app.use(express.json())
 app.use(cors());
+dotenv.config();
 
 const port = process.env.PORT || 5000;
 
