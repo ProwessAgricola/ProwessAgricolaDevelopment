@@ -80,7 +80,6 @@ const getProducts =  async (req, res) => {
 const getProductByID = async (req, res) => {
   try {
     const productId = req.params.id;
-    console.log(productId)
     const productDoc = await firestore.getDoc(firestore.doc(fs, 'producto', productId));
     if (productDoc.exists()) {
       res.json({ id: productDoc.id, ...productDoc.data() });

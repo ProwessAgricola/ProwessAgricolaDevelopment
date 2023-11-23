@@ -6,9 +6,8 @@ import {fs,storage} from '../database/firebase.js';
 const createCategory=  async (req, res) => {
     try {
       const newCategoryData = req.body;
-      console.log(newCategoryData);
       const docRef = await firestore.addDoc(firestore.collection(fs, 'categoria'), newCategoryData);
-      res.json({ id: docRef.id, ...newCategoryData });
+      res.status(200).json({ id: docRef.id, ...newCategoryData });
     } catch (error) {
       console.error('Error al crear el categoria:', error);
       res.status(500).json({ error: 'Error al crear el categoria.' });
@@ -35,7 +34,6 @@ const getCategories =  async (req, res) => {
 const getCategoryByID = async (req, res) => {
   try {
     const categoryId = req.params.id;
-    console.log(categoryId)
     const categoryDoc = await firestore.getDoc(firestore.doc(fs, 'categoria', categoryId));
     if (categoryDoc.exists()) {
       res.json({ id: categoryDoc.id, ...categoryDoc.data() });

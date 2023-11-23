@@ -8,7 +8,6 @@ import {fs,storage} from '../database/firebase.js';
 const createSeller=  async (req, res) => {
     try {
       const newSellerData = req.body; // Los datos del nuevo vendedor deben estar en el cuerpo de la solicitud (request body)
-      console.log(newSellerData);
       const docRef = await firestore.addDoc(firestore.collection(fs, 'vendedor'), newSellerData);
       res.json({ id: docRef.id, ...newSellerData });
     } catch (error) {
@@ -37,7 +36,6 @@ const getSeller =  async (req, res) => {
 const getSellerByID = async (req, res) => {
     try {
       const sellerId = req.params.id;
-      console.log(sellerId)
       const sellerDoc = await firestore.getDoc(firestore.doc(fs, 'vendedor', sellerId));
       if (sellerDoc.exists()) {
         res.json({ id: sellerDoc.id, ...sellerDoc.data() });

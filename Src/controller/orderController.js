@@ -34,7 +34,7 @@ export const createOrder = async (req, res) => {
 export const createOrder = async (req, res) => {
   try {
     const newOrder2tData = req.body; // Los datos de la nueva orden deben estar en el cuerpo de la solicitud (request body)
-    console.log(newOrder2tData);
+
     const docRef = await firestore.addDoc(firestore.collection(fs, 'orden'), newOrder2tData);
     res.json({ id: docRef.id, ...newOrder2tData });
   } catch (error) {
@@ -117,7 +117,6 @@ export const deleteOrder = async (req, res) => {
   export const getOrder = async (req, res) => {
     try {
       const ordenId = req.params.id;
-      console.log(ordenId)
       const ordenDoc = await firestore.getDoc(firestore.doc(fs, 'orden', ordenId));
       if (ordenDoc.exists()) {
         res.json({ id: ordenDoc.id, ...ordenDoc.data() });
