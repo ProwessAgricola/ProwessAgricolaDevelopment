@@ -14,6 +14,7 @@ const createCategory=  async (req, res) => {
     }
   };
 
+
   //Obtener todas las categorias.
 const getCategories =  async (req, res) => {
   try {
