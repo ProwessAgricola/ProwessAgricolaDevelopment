@@ -1,5 +1,4 @@
 import express from 'express';
-import multer from 'multer';
 import * as categoria from '../controller/categoryController.js';
 import * as tokencontroller from '../middleware/verifyToken.js';
 

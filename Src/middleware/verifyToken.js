@@ -16,7 +16,7 @@ const verifyToken = async (req, res, next) => {
       }
     });
   } else {
-    res.status(400).json({ mensaje: "Verificacion Token erronea, Debes enviar un token" });
+    res.status(400).json({ mensaje: "Token invalido o incorrecto." });
   }
 };
 
@@ -27,7 +27,7 @@ const getUserDataFromToken = (req,res) => {
     const data = jwt.verify(token, secret);
     return res.status(200).json({data});
   } catch (error) {
-    res.status(400).json({ mensaje: "Token invalido AQUI" });
+    res.status(400).json({ mensaje: "Token invalido" });
   }
 };
 
@@ -47,7 +47,7 @@ const verifyTokenAdmin = (req,res,next) => {
       }
     });
   } else {
-    res.status(400).json({ mensaje: "Debes enviar un token" });
+    res.status(400).json({ mensaje: "Usuario no autentificado" });
   }
 }
 

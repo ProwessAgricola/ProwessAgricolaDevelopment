@@ -18,6 +18,10 @@ userRoute.put('/update',upload.single("imagenUsuario"),tokencontroller.verifyTok
 userRoute.put('/update/:id',tokencontroller.verifyTokenAdmin,usuario.updateUserById);
 userRoute.delete('/delete',tokencontroller.verifyToken,usuario.deleteUser);
 userRoute.delete('/delete/:id',tokencontroller.verifyTokenAdmin,usuario.deleteUserById);
-userRoute.get('/actualizarDatos',usuario.actualizarDatos);
+userRoute.post('/password-recovery',usuario.sendRecoveryCode);
+userRoute.post('/password-verify',usuario.verifyRecoveryCode);
+userRoute.post('/password-reset', usuario.updatePasswordWithRecoveryCode);
+userRoute.post('/recovery-account', usuario.recoverAccountByCedula);
+
 
 export default userRoute;

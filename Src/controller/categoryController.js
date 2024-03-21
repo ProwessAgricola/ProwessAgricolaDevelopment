@@ -1,7 +1,6 @@
 import 'firebase/database';
-import * as firebase from 'firebase/app';
 import * as firestore from 'firebase/firestore';
-import {fs,storage} from '../database/firebase.js';
+import {fs} from '../database/firebase.js';
 // Crear una nueva categoria
 const createCategory=  async (req, res) => {
     try {

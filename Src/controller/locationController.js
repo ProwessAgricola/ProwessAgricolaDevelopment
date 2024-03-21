@@ -1,12 +1,4 @@
-import * as firebase from "firebase/app";
-import * as firestore from "firebase/firestore";
 import 'firebase/storage';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { query, where, getDocs, collection } from "firebase/firestore";
-import multer from "multer";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import {fs,storage} from '../database/firebase.js';
 import * as fils from 'fs';
 
 
@@ -36,4 +28,12 @@ const exportProvinces = async (req, res) => {
 });
 }
 
-export {exportProvinces};
+const getAll = async (req, res) => {
+    fils.readFile('src/data/locations.json', (err, data) => {
+        if (err) throw err;
+        const jsonData = JSON.parse(data);
+        return res.status(200).send({ message: jsonData });
+    });
+}
+
+export {exportProvinces, getAll};
